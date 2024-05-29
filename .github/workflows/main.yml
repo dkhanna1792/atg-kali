@@ -29,7 +29,7 @@ jobs:
         name: bandit-findings
         path: bandit-report.json
 
-docker_image_scan:
+  docker_image_scan:
     name: Docker image scanning 
     runs-on: ubuntu-latest
 
