@@ -24,12 +24,12 @@ jobs:
         confidence: high, medium
         exit_zero: true
       
-    - name: Upload report 
-      uses: actions/upload-artifact@v1
-      if: ${{ always() }}
+    - name: Upload report bandit
+      uses: actions/upload-artifact@v4.3.3
+      if: always()
       with:
         name: bandit-findings
-        path: bandit-report.json
+        path: /home/runner/work/atg-kali/reports/bandit-report.json
 
   docker_image_scan:
     name: Docker image scanning 
@@ -67,10 +67,10 @@ jobs:
         
 
     - name: Upload report scout
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.3.3
       if: always()
       with:
         name: scout-findings
-        path: scout-report.json
+        path: /home/runner/work/atg-kali/reports/scout-report.json
 
          
