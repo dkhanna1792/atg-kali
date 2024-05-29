@@ -6,9 +6,6 @@ jobs:
   sast_scan:
     name: Running Bandit Scan
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./atg-kali
 
     steps:
     - name: Checkout Code
@@ -17,11 +14,11 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.10
 
     - name: Install Bandit
-      uses: shundor/python-bandit-scan@v1.0
-
+      run: python3 -m pip install bandit
+      
     - name: bandit running 
       run: bandit -r . -f json -o bandit-report.json
       
