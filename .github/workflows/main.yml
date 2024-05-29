@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkoutv@v2
+      uses: actions/checkout@v4.1.5
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -37,7 +37,7 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkoutv@v2
+      uses: actions/checkout@v4.1.5
       
     - name: Setup Docker
       uses: docker-practice/actions-setup-docker@v1
