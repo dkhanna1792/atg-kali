@@ -32,6 +32,6 @@ jobs:
       if: always()
       with:
         name: bandit-findings
-        path: atg-kali/reports/bandit-report.json
+        path: atg-kali/bandit-report.json
 
 
