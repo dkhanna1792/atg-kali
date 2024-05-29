@@ -17,14 +17,16 @@ jobs:
         python-version: 3.8
 
     - name: Install Bandit
-      run: pip install bandit
-
-    - name: Run Bandit scan
-      run: bandit -r -ll -lll -ii -iii . -f json -o report.json
-
+      uses: shundor/python-bandit-scan@v1.0
+      with: 
+        path: "."
+        level: high, medium
+        confidence: high, medium
+        exit_zero: true
+      
     - name: Upload report 
-      uses: actions/upload-artifact@v3
-      if: always()
+      uses: actions/upload-artifact@v1
+      if: ${{ always() }}
       with:
         name: bandit-findings
         path: bandit-report.json
