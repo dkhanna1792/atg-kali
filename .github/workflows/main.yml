@@ -6,6 +6,9 @@ jobs:
   sast_scan:
     name: Running Bandit Scan
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./atg-kali
 
     steps:
     - name: Checkout Code
@@ -29,6 +32,6 @@ jobs:
       if: always()
       with:
         name: bandit-findings
-        path: /reports/bandit-report.json
+        path: atg-kali/reports/bandit-report.json
 
 
