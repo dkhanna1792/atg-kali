@@ -22,20 +22,20 @@ jobs:
     #- name: Build docker image
    #   run: docker build -f Dockerfile -t pygoat:latest .
 
-    - name: Docker Scout image running
-      uses: docker/scout-action@v1.9.3
-      with: 
-        dockerhub-user: ${{ secrets.USERNAME }}
-        dockerhub-password: ${{ secrets.PASSWORD }}
-        command: quickview, cves
-        only-serverities: critical, high, medium
-        sarif-file: scout-report.sarif
-        exit-code: true
+  #  - name: Docker Scout image running
+   #   uses: docker/scout-action@v1.9.3
+   #   with: 
+    #    dockerhub-user: ${{ secrets.USERNAME }}
+    #    dockerhub-password: ${{ secrets.PASSWORD }}
+   #     command: quickview, cves
+   #     only-serverities: critical, high, medium
+    #    sarif-file: scout-report.sarif
+    #    exit-code: true
         
 
-    - name: Upload report scout
-      uses: actions/upload-artifact@v4.3.3
-      if: always()
-      with:
-        name: scout-findings
-        path: scout-report.sarif
+  #  - name: Upload report scout
+  #    uses: actions/upload-artifact@v4.3.3
+  #    if: always()
+  #    with:
+   #     name: scout-findings
+  #      path: scout-report.sarif
