@@ -1,34 +1,56 @@
-name: CI
+#name: CI
 
-on: [push]
+#on: [push]
 
+#jobs:
+
+#  sast_scan:
+#    name: Running Bandit Scan
+ #   runs-on: ubuntu-latest
+
+#    steps:
+  #  - name: Checkout Code
+   #   uses: actions/checkout@v4.1.5
+
+  #  - name: Set up Python
+   #   uses: actions/setup-python@v2
+   #   with:
+   #     python-version: 3.11
+
+#    - name: Install Bandit
+  #    run: python3 -m pip install bandit
+      
+ #   - name: bandit running 
+  #    run: bandit -r . -f json -o bandit-report.json
+      
+  #  - name: Upload report bandit
+  #    uses: actions/upload-artifact@v4.3.3
+   #   if: always()
+   #   with:
+   #     name: bandit-findings
+   #     path: bandit-report.json
+
+name: Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-
-  sast_scan:
-    name: Running Bandit Scan
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4.1.5
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }} 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11
-
-    - name: Install Bandit
-      run: python3 -m pip install bandit
-      
-    - name: bandit running 
-      run: bandit -r . -f json -o bandit-report.json
-      
-    - name: Upload report bandit
-      uses: actions/upload-artifact@v4.3.3
-      if: always()
-      with:
-        name: bandit-findings
-        path: bandit-report.json
 
 
  # docker_image_scan:
